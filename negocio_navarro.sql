@@ -74,6 +74,18 @@ VALUES ('Bebidas'), ('Chocolates'), ('Cigarros'), ('Casero');
 SELECT * FROM negocio_navarro.tipodeproductos;
 
 -- AÑADIR VALORES EN PRODUCTOS -----------------------------------------
-INSERT INTO tipodeproductos (nombreCategoria)
-VALUES ('Bebidas'), ('Chocolates'), ('Cigarros'), ('Casero');
-SELECT * FROM negocio_navarro.tipodeproductos;
+INSERT INTO producto (nombreProducto,precio,stock,tipoDeProductos_id)
+VALUES ('CocaCola 3L', 2500, 50, 1 ), ('CocaCola 1.5L', 1500, 80, 1 ), ('Malboro Ice', 2500, 50, 1 ), ('Sahne Nuss 250gr', 5500, 10, 2 ), ('Trozo Queque', 500, 15, 4 );
+UPDATE producto SET tipoDeProductos_id = 3
+  WHERE producto_id = 3;
+SELECT * FROM negocio_navarro.producto;
+
+-- AÑADIR VALORES A LAS OTRAS TABLAS -----------------------------------
+INSERT INTO efectivoodigital (nombre,otrosdetalles)
+VALUES ('efectivo', '-' ), ('débito', 'transback' ), ('transferencia', 'cuenta jaime' );
+SELECT * FROM negocio_navarro.efectivoodigital;
+
+INSERT INTO boletacarrocompra (fecha,nombre,efectivoodigital_id)
+-- aquí añadimos una compra realizada en 2021 para poder ocupar el llamado de datos con filtro de fecha BETWEEN
+VALUES (20221111, 'compra2cocas', 3 ), ('20220101', '5cocas', 1 ), ('20211229', '1coca', 2 )
+SELECT * FROM negocio_navarro.boletacarrocompra;
