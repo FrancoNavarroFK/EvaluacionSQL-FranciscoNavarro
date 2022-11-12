@@ -87,5 +87,14 @@ SELECT * FROM negocio_navarro.efectivoodigital;
 
 INSERT INTO boletacarrocompra (fecha,nombre,efectivoodigital_id)
 -- aquí añadimos una compra realizada en 2021 para poder ocupar el llamado de datos con filtro de fecha BETWEEN
-VALUES (20221111, 'compra2cocas', 3 ), ('20220101', '5cocas', 1 ), ('20211229', '1coca', 2 )
+VALUES (20221111, 'compra2cocas', 3 ), ('20220101', '5cocas', 1 ), ('20211229', '1coca', 2 );
 SELECT * FROM negocio_navarro.boletacarrocompra;
+
+INSERT INTO detallecantidad (boletacarrocompra_id, producto_id, cantidad, precio)
+  VALUES (1, 1, 2, 2500), (2,2,5,1500), (3,1,1,2500);
+  SELECT * FROM negocio_navarro.detallecantidad;
+
+INSERT INTO proveedores (nombreProveedor, nombrePersonaProveedor, teléfono, correo, precioProveedor, producto_id)
+-- tendremos dos proveedores de cocas de 1.5 litros, la de la feria y la de cocacola company
+  VALUES ('CocacolaCompany', 'Juan', 55555555, 'juancoca@gmail.com', 1800, 1), ('CocaFeria', 'Sashita', 55555551, '-', 700, 2), ('CocacolaCompany', 'Juan', 55555555, 'juancoca@gmail.com', 900, 2);
+  SELECT * FROM negocio_navarro.proveedores;
