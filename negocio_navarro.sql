@@ -91,10 +91,27 @@ VALUES (20221111, 'compra2cocas', 3 ), ('20220101', '5cocas', 1 ), ('20211229', 
 SELECT * FROM negocio_navarro.boletacarrocompra;
 
 INSERT INTO detallecantidad (boletacarrocompra_id, producto_id, cantidad, precio)
-  VALUES (1, 1, 2, 2500), (2,2,5,1500), (3,1,1,2500);
+  VALUES (1, 1, 2, 2500), (1, 3, 1, 3000), (2,2,5,1500), (3,1,1,2500);
   SELECT * FROM negocio_navarro.detallecantidad;
+  
+
 
 INSERT INTO proveedores (nombreProveedor, nombrePersonaProveedor, teléfono, correo, precioProveedor, producto_id)
 -- tendremos dos proveedores de cocas de 1.5 litros, la de la feria y la de cocacola company
   VALUES ('CocacolaCompany', 'Juan', 55555555, 'juancoca@gmail.com', 1800, 1), ('CocaFeria', 'Sashita', 55555551, '-', 700, 2), ('CocacolaCompany', 'Juan', 55555555, 'juancoca@gmail.com', 900, 2);
   SELECT * FROM negocio_navarro.proveedores;
+  
+  -- llamar datos con JOIN
+  -- Aquí ocurre un problema de duplicación de datos porque un producto tiene 2 proveedores --
+  -- una solución sería que en detalle boleta también se inserte la FK del proveedor 
+  SELECT detallecantidad.boletaCarroCompra_id, detallecantidad_id, fecha, nombreProducto, cantidad, detallecantidad.precio, precioProveedor
+    FROM detallecantidad CROSS JOIN producto ON (detallecantidad.producto_id=producto.producto_id)
+  CROSS JOIN proveedores ON (producto.producto_id=proveedores.producto_id)
+  CROSS JOIN boletacarrocompra ON (detallecantidad.boletaCarroCompra_id=boletacarrocompra.boletaCarroCompra_id);
+  
+  -- omitiremos un proveedor, suponiendo que con feria ya no tenemos contacto para las cocas de 1.5litros
+  -- queremos ver las cantidad de ventas (COUNT) de cocacola en 2022, y las ganancias (SUMA)
+  
+  
+  
+  
