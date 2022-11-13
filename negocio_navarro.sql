@@ -101,6 +101,9 @@ INSERT INTO proveedores (nombreProveedor, nombrePersonaProveedor, teléfono, cor
   VALUES ('CocacolaCompany', 'Juan', 55555555, 'juancoca@gmail.com', 1800, 1), ('CocaFeria', 'Sashita', 55555551, '-', 700, 2), ('CocacolaCompany', 'Juan', 55555555, 'juancoca@gmail.com', 900, 2);
   SELECT * FROM negocio_navarro.proveedores;
   
+  -- -------------------------------------------------------------------------------------------------
+  -- -------------------------------------------------------------------------------------------------
+  -- -------------------------------------------------------- PARTE FINAL-----------------------------
   -- llamar datos con JOIN
   -- Aquí ocurre un problema de duplicación de datos porque un producto tiene 2 proveedores --
   -- una solución sería que en detalle boleta también se inserte la FK del proveedor 
@@ -110,8 +113,8 @@ INSERT INTO proveedores (nombreProveedor, nombrePersonaProveedor, teléfono, cor
   CROSS JOIN boletacarrocompra ON (detallecantidad.boletaCarroCompra_id=boletacarrocompra.boletaCarroCompra_id);
   
   -- omitiremos un proveedor, suponiendo que con feria ya no tenemos contacto para las cocas de 1.5litros
+  -- otra solución es que sean productos distintos, coca de 1.5L-feria, y coca 1.5L-cocacompany
   -- queremos ver las cantidad de ventas (COUNT) de cocacola en 2022, y las ganancias (SUMA)
-  
   
   
   
