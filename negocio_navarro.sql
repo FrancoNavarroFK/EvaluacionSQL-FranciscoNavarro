@@ -142,7 +142,7 @@ INSERT INTO proveedores (nombreProveedor, nombrePersonaProveedor, teléfono, cor
   
   # --------------- Calcular ganancias ----------------------
   # restamos precio - precioProveedor, y multiplicamos por SUM
-  SELECT nombreProducto, detallecantidad.precio, precioProveedor, sum(detallecantidad.cantidad), sum((detallecantidad.precio-precioProveedor))
+  SELECT nombreProducto, detallecantidad.precio, precioProveedor, sum(detallecantidad.cantidad), ((detallecantidad.precio-precioProveedor)*sum(detallecantidad.cantidad))
     FROM detallecantidad CROSS JOIN producto ON (detallecantidad.producto_id=producto.producto_id)
   CROSS JOIN proveedores ON (producto.producto_id=proveedores.producto_id)
   CROSS JOIN boletacarrocompra ON (detallecantidad.boletaCarroCompra_id=boletacarrocompra.boletaCarroCompra_id)
@@ -150,6 +150,12 @@ INSERT INTO proveedores (nombreProveedor, nombrePersonaProveedor, teléfono, cor
   WHERE 
   (producto.producto_id = 1)
   AND (boletacarrocompra.fecha BETWEEN '20220101' AND '20221231');
+  # --
+  -- Al final nos da la ganancia de todas las cocacola3L vendidas en el año 2022
+  
+  # -------------------------------------------------------------------------------------
+  # ------------------------------ EL FIN -----------------------------------------------
+  # -------------------------------------------------------------------------------------
   
 
   
